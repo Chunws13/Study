@@ -1,0 +1,22 @@
+import sys
+m = sys.stdin.readline
+
+house_number = int(m())
+
+house = []
+for h in range(house_number):
+    add_house = list(map(int, m().split()))
+    house.append(add_house)
+
+answer = [0] * (house_number + 1)
+for i in range(len(house)):
+    if i == 0:
+        answer[i] = 0
+    
+    elif i == 1:
+        answer[i] = min(house[i-1])
+    
+    else:
+        pass
+
+print(house)
