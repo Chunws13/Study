@@ -16,7 +16,7 @@ def rotate(o_list, index):
         new = [[0] * n for _ in range(m)]
         for i in range(n):
             for j in range(m):
-                new[m-j-1][n-i-1] = o_list[i][j]
+                new[n-i-1][m-j-1] = o_list[i][j]
         return new
     
     
