@@ -11,7 +11,7 @@ v_info = []
 for r in range(size):
     for c in range(size):
         if info[r][c] == 2:
-            v_info.append([r, c, 0])
+            v_info.append([0, r, c])
             info[r][c] = '*'
         
         if info[r][c] == 1:
@@ -21,22 +21,25 @@ for r in range(size):
             info[r][c] = -1
             
 ad_r, ad_c = [1, -1, 0, 0], [0, 0, 1, -1]
-virus = list(combinations(v_info, v))
+virus = combinations(v_info, v)
 inf = math.inf
 result = []
 
 for v in virus:
     answer = 0
-    start = deque(v)
     board = copy.deepcopy(info)
-    
+    start = deque(v)
     visited = [[0] * size for _ in range(size)]
     
+    for t, r, c in v:
+        visited[r][c] = 1
+        board[r][c] = t
+
     while start:
-        row, col, time = start.popleft()
+        time, row, col = start.popleft()
         
-        visited[row][col] = 1
-        board[row][col] = time
+        if board[row][col] == -1:
+            board[row][col] = time
         
         for i in range(4):
             new_r, new_c = row + ad_r[i], col + ad_c[i]
@@ -44,12 +47,13 @@ for v in virus:
             if new_r < 0 or new_r >= size or new_c < 0 or new_c >= size:
                 continue
             
-            if visited[new_r][new_c] or board[new_r][new_c] != -1:
+            if visited[new_r][new_c] or board[new_r][new_c] == '-':
                 continue
             
             visited[new_r][new_c] = 1
-            start.append([new_r, new_c, time + 1])
-    
+            start.append([time+1, new_r, new_c])
+            
+                
     status = False
     for i in range(size):
         for j in range(size):
@@ -71,5 +75,6 @@ for v in virus:
 result.sort()
 if result[0] == inf:
     print(-1)
+    
 else:
-    print(result)
+    print(result[0])
