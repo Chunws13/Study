@@ -3,8 +3,8 @@
 
 # 2차원 배열 회전
 def rotate(o_list, index):
-    n = len(o_list) # 행 길이 계산
-    m = len(o_list[0]) # 열 길이 계산
+    n = len(o_list) - 행 길이
+    m = len(o_list[0]) - 열 길이 계산
     
     # 270도 회전
     if index == 1:
