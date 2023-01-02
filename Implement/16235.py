@@ -1,4 +1,6 @@
 # 16235
+# list + deque 로 풀었으나
+# list + dic 구조가 더 빠른 것으로 보임 (정답 리스트 참고, 한 칸 당 데이터 길이가 줄어서..?)
 import sys
 from collections import deque
 input = sys.stdin.readline
