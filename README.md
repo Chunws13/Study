@@ -1,5 +1,16 @@
 # Study
 
+# Dictionary 트리
+    point = floor['start']
+    for i in range(1, len(info)):
+        point[info[i]] = point.get(info[i], {})
+        point = point[info[i]]
+
+
+# 2차원 리스트 행/열 반전
+기존 리스트 = Origin_list / 반전 리스트 = Reverse_list
+
+    Reverse_list = list(map(list, zip(*Origin_list)))
 
 # 2차원 배열 회전
     def rotate(o_list, index):
@@ -33,12 +44,6 @@
 
         else:
             return o_list
-
-
-# 2차원 리스트 행/열 반전
-기존 리스트 = Origin_list / 반전 리스트 = Reverse_list
-
-    Reverse_list = list(map(list, zip(*Origin_list)))
     
 # 2차원 배열 외벽 순환 / ex. BOJ - 17144
 
