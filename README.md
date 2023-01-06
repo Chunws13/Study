@@ -91,7 +91,7 @@
                     idx = (idx + 1) % 4
 
 # 세그먼트 트리 - 구간 합 기준
-    ## 
+    ## 생성
     def init(start, end, idx):
         if start == end:
             table[idx] = info[start]
@@ -100,7 +100,8 @@
         mid = (start + end) // 2
         table[idx] = init(start, mid, idx * 2) + init(mid + 1, end, idx*2 + 1)
         return table[idx]
-
+    
+    ## 구간합
     def calc(start, end, idx, left, right):
         if left <= start and end <= right:
             return table[idx]
@@ -110,7 +111,8 @@
 
         mid = (start + end) // 2
         return calc(start, mid, idx*2, left, right) + calc(mid + 1, end, idx*2 + 1, left, right)
-
+    
+    ## 
     def update(start, end, idx, point, value):
         if point < start or point > end:
             return
