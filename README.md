@@ -89,3 +89,37 @@
 
                 else:
                     idx = (idx + 1) % 4
+
+# 세그먼트 트리 - 구간 합 기준
+    ## 
+    def init(start, end, idx):
+        if start == end:
+            table[idx] = info[start]
+            return table[idx]
+
+        mid = (start + end) // 2
+        table[idx] = init(start, mid, idx * 2) + init(mid + 1, end, idx*2 + 1)
+        return table[idx]
+
+    def calc(start, end, idx, left, right):
+        if left <= start and end <= right:
+            return table[idx]
+
+        if end < left or start > right:
+            return 0
+
+        mid = (start + end) // 2
+        return calc(start, mid, idx*2, left, right) + calc(mid + 1, end, idx*2 + 1, left, right)
+
+    def update(start, end, idx, point, value):
+        if point < start or point > end:
+            return
+
+        if start == end:
+            table[idx] = value
+            return
+
+        mid = (start + end) // 2
+        update(start, mid, idx * 2, point, value)
+        update(mid + 1, end, idx * 2 + 1, point, value)
+        table[idx] = table[idx*2] + table[idx *2 + 1]
