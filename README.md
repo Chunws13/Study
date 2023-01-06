@@ -112,7 +112,7 @@
         mid = (start + end) // 2
         return calc(start, mid, idx*2, left, right) + calc(mid + 1, end, idx*2 + 1, left, right)
     
-    ## 
+    ## 업데이트
     def update(start, end, idx, point, value):
         if point < start or point > end:
             return
